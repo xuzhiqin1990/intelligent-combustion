@@ -9,7 +9,7 @@ DeePMR: DeeP Model Reduction, develop DNN-based algorithms for reducing chemical
 
 
 ## DeePODE
-DeePCK: DeeP chemical kinetics, develop DNN-based surrogate model to accelerate the simulation of chemical kinetics.
+DeePODE: DeeP chemical kinetics, develop DNN-based surrogate model to accelerate the simulation of chemical kinetics.
 
 This open project will release various models based on our algorithms.
 

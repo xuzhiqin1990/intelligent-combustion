@@ -1,0 +1,53 @@
+# 化学信息
+APART_base:
+  reduced_mech:  './settings/zhan2024_Nonegative.yaml'            # 详细机理位置
+  IDT_mode: 1            # IDT 的模式
+  idt_defined_species: 'OH'
+  IDT_csv_path: './settings/IDT_ripe_data.csv'
+  LFS_csv_path: './settings/laminarFS_ripe_data.csv'
+
+# APART对应的所有参数
+APART_args:
+  # Sampling 参数
+  SetAdjustableReactions_mode: 1
+  GenASampleRange_mode: 'default'
+  sensitivity_scale_coeff: 3
+  
+  True_IDT_Cut_Time: 2
+  # 控制采样总体的参数
+  father_sample_size: 1
+  sample_size: 60000
+
+  # 控制 Net-Sample 筛选规则的参数
+  l_alpha: -0.15
+  r_alpha: 0.15
+  # 控制 Net-Sample 筛选规则的参数
+  idt_threshold: [10, 8, 6, 5, 4, 3, 2.5, 2, 2, 1.8, 1.6, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]                       # 筛选规则的阈值; 这里粗糙地将 PSR 筛选
+  lfs_threshold: [0.3, 0.3, 0.3, 0.2, 0.2, 0.2, 0.1, 0.08, 0.07, 0.06, 0.05, 0.05, 0.04, 0.04, 0.04, 0.04, 0.04]
+  T_threshold_ratio: 0.95
+  # Gendata 参数
+  cpu_process: 145                           # gendata 使用的 cpu 核数
+  IDT_weight: 1
+  LFS_weight: 1
+  passing_rate_upper_limit: 0.3
+  threshold_expand_factor: 2
+  PSRex_cutdown: False
+
+  # 在迭代过程中训练神经网络
+  shrink_strategy: False
+  shrink_delta: 0.02
+  shrink_ratio: 0.0
+  extract_stategy: True
+  extract_ratio: 0.05
+  concat_pre: False                              # 是否使用之前的 apart_data 一起训练
+  reuse_net: False                               # 是否使用之前的网络继续训练
+  optimizer: 'Adam'                              # 训练的优化器
+  learning_rate: 5.0e-5                          # 训练的学习率
+  lr_decay_step: 20                              # 每多少个epoch学习率开始衰减
+  lr_decay_rate: 0.95                            # 学习率衰减为原来的多少
+  batch_size: 1000                               # batch size
+  hidden_units: [3000, 2000, 2000]               # 隐藏层的宽度; 此处 IDT 和 PSR 的网络毫无关系。分开训练
+  epoch: 700    
+
+
+  
